@@ -1,18 +1,22 @@
 import React, { useState ,createContext}  from 'react'
-import CurrencyRow from './CurrencyRow';
-import "./app.css"
+import useLocalStorage from './useLocalStorage';
+import useUpdateLogger from './useUpdateLogger';
+
 
 // import Pagination from './Pagination';
 function App() {
- return (  
+ const [name,setname] = useLocalStorage("name","abid")
+ useUpdateLogger(name)
+  return (  
     <>
-    <h1 >Currency converter</h1>
-    <CurrencyRow/>
-    <div>=</div>
-    <CurrencyRow/>
+    <input 
+    type="text"
+    value={name}
+    onChange={e => setname(e.target.value)} />
     </>
   )
 
 }
 
 export default App;
+ 
